@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { ContaService } from './conta.service';
 import { CreateContaDto } from './dto/create-conta.dto';
 import { UpdateContaDto } from './dto/update-conta.dto';
@@ -22,7 +22,7 @@ export class ContaController {
     return this.contaService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updatecontaDto: UpdateContaDto) {
     return this.contaService.update(id, updatecontaDto);
   }
