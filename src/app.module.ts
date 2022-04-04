@@ -8,7 +8,7 @@ import { TransacaoModule } from './transacao/transacao.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: ['.env'] }),
-    MongooseModule.forRoot(process.env.DB_CONFIG, { useFindAndModify: false }),
+    MongooseModule.forRoot(process.env.DB_CONFIG),
     UsuarioModule,
     ContaModule,
     TransacaoModule,
