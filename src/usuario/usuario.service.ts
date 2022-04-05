@@ -23,6 +23,10 @@ export class UsuarioService {
     return this.usuarioModel.findById(id);
   }
 
+  // findOneByLogin(usuario: string, senha: string) {
+  //   return this.usuarioModel.find({$and: [{usuario}, {senha}]});
+  // }
+
   update(id: string, updateUsuarioDto: UpdateUsuarioDto) {
     return this.usuarioModel.findByIdAndUpdate({_id: id}, {$set: UpdateUsuarioDto}, {new: true});
   }
