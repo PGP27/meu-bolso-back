@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, HttpCode } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
@@ -12,7 +12,13 @@ export class UsuarioController {
     return this.usuarioService.create(createUsuarioDto);
   }
 
-  @Get()
+  @Post('login')
+  @HttpCode(200)
+  findOneByLogin(@Body('usuario') usuario: string, @Body('senha') senha: string) {
+    return this.usuarioService.findOneByLogin(usuario, senha);
+  }
+
+  @Get('all')
   findAll() {
     return this.usuarioService.findAll();
   }
@@ -21,11 +27,6 @@ export class UsuarioController {
   findOne(@Param('id') id: string) {
     return this.usuarioService.findOne(id);
   }
-
-  // @Get('login')
-  // findOneByLogin(@Body('usuario') usuario: string, @Body('senha') senha: string) {
-  //   return this.usuarioService.findOneByLogin(usuario, senha);
-  // }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateUsuarioDto: UpdateUsuarioDto) {
