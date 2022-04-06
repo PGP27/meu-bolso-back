@@ -8,13 +8,18 @@ export class TransacaoController {
   constructor(private readonly transacaoService: TransacaoService) {}
 
   @Post()
-  create(@Body() createtransacaoDto: CreateTransacaoDto) {
-    return this.transacaoService.create(createtransacaoDto);
+  create(@Body() createTransacaoDto: CreateTransacaoDto) {
+    return this.transacaoService.create(createTransacaoDto);
   }
 
   @Get()
   findAll() {
     return this.transacaoService.findAll();
+  }
+
+  @Get('conta/:conta_id')
+  findByContaId(@Param('conta_id') conta_id: string) {
+    return this.transacaoService.findByContaId(conta_id);
   }
 
   @Get(':id')
@@ -23,8 +28,8 @@ export class TransacaoController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updatetransacaoDto: UpdateTransacaoDto) {
-    return this.transacaoService.update(id, updatetransacaoDto);
+  update(@Param('id') id: string, @Body() updateTransacaoDto: UpdateTransacaoDto) {
+    return this.transacaoService.update(id, updateTransacaoDto);
   }
 
   @Delete(':id')

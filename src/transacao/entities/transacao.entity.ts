@@ -15,9 +15,6 @@ export class Transacao {
   valor: number;
 
   @Prop()
-  usuario_id: string;
-
-  @Prop()
   conta_id: string;
 
   @Prop()
