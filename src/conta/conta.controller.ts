@@ -8,14 +8,20 @@ export class ContaController {
   constructor(private readonly contaService: ContaService) {}
 
   @Post()
-  create(@Body() createcontaDto: CreateContaDto) {
-    return this.contaService.create(createcontaDto);
+  create(@Body() createContaDto: CreateContaDto) {
+    return this.contaService.create(createContaDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.contaService.findAll();
   }
+
+  @Get('usuario/:usuario_id')
+  findByUsuarioId(@Param('usuario_id') usuario_id: string) {
+    return this.contaService.findByUsuarioId(usuario_id);
+  }
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {

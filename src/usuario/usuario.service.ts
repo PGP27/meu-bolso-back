@@ -16,7 +16,7 @@ export class UsuarioService {
       const nomeRegex = /^[a-zA-Z ]{1,100}$/;
       if (!nome.match(nomeRegex)) {
         throw new HttpException(
-          { message: "Nome precisa ter entre 1 e 100 caracteres contendo apenas letras e espaço" },
+          { message: "Nome precisa ter entre 1 e 100 caracteres contendo apenas letras e espaços" },
           HttpStatus.BAD_REQUEST
         );
       }
@@ -72,9 +72,11 @@ export class UsuarioService {
 
   async findOneByLogin (usuario: string, senha: string) {
     if (usuario && senha) {
-      const documents = await this.usuarioModel.find({$and: [{usuario}, {senha}]});
-      if (documents.length === 1) {
-        return documents;
+      const document = await this.usuarioModel.find({$and: [{usuario}, {senha}]});
+      if (document.length === 1) {
+        return {
+          usuario: document,
+        };
       }
       throw new HttpException(
         { message: "Usuário ou senha inválidos." },
